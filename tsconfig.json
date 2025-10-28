@@ -1,0 +1,11 @@
+{
+    "extends": "./.nuxt/tsconfig.json",
+    "compilerOptions": {
+        "moduleResolution": "Bundler",
+        "allowImportingTsExtensions": true,
+        "skipLibCheck": true,
+        "noImplicitAny": false,
+        "strict": false,
+        "typeRoots": ["./node_modules/@types", "./node_modules/@yandex/ymaps3-types"]
+    }
+}

@@ -1,0 +1,40 @@
+@use 'variables' as *;
+@use 'sass:map';
+@use 'sass:list';
+@use 'sass:color';
+
+/* For respond-to */
+/*stylelint-disable*/
+@function breakpoint-max($name, $bp: $breakpoints) {
+    $next: breakpoint-next($name, $bp);
+
+    @return if($next, breakpoint-min($next, $bp) - 0.02, null);
+}
+
+@function breakpoint-min($name, $bp: $breakpoints) {
+    $min: map.get($bp, $name);
+
+    @return if($min != 0, $min, null);
+}
+
+@function breakpoint-next($name, $bp: $breakpoints, $breakpoint-names: map.keys($bp)) {
+    $n: list.index($breakpoint-names, $name);
+
+    @return if(
+        $n != null and $n < list.length($breakpoint-names),
+        list.nth($breakpoint-names, $n + 1),
+        null
+    );
+}
+
+@function breakpoint-infix($name, $bp: $breakpoints) {
+    @return if(breakpoint-min($name, $bp) == null, '', '-#{$name}');
+}
+
+/* End respond-to */
+
+@function rgb-from-hex($hex) {
+    @return color.red($hex), color.green($hex), color.blue($hex);
+}
+
+/*stylelint-enable*/

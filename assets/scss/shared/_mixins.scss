@@ -1,0 +1,329 @@
+@use 'variables' as *;
+@use 'functions' as *;
+
+/*stylelint-disable*/
+@mixin aspect-ratio($width, $height) {
+    &:before {
+        content: '';
+        display: block;
+        width: 100%;
+        padding-top: ($height / $width) * 100%;
+    }
+
+    & > .aspect-content {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+    }
+}
+
+@mixin respond-to($name, $bp: $breakpoints) {
+    $max: breakpoint-max($name, $bp);
+
+    @if $max {
+        @media (max-width: $max) {
+            @content;
+        }
+    } @else {
+        @content;
+    }
+}
+
+@mixin respond-to-min($name, $bp: $breakpoints) {
+    $min: breakpoint-min($name, $bp);
+
+    @if $min {
+        @media (min-width: $min) {
+            @content;
+        }
+    } @else {
+        @content;
+    }
+}
+
+@mixin font($alias, $name, $weight) {
+    @font-face {
+        font-family: $alias;
+        src:
+            local($name),
+            url('@/assets/fonts/' + $name + '.woff') format('woff');
+        font-weight: $weight;
+        font-style: normal;
+        font-display: swap;
+    }
+}
+
+@mixin hover {
+    @media (hover), (-ms-high-contrast: none), (-ms-high-contrast: active) {
+        &:hover {
+            @content;
+        }
+    }
+}
+
+@mixin touch {
+    @media (pointer: coarse) {
+        @content;
+    }
+}
+
+@mixin respond-ie {
+    @media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
+        @content;
+    }
+}
+
+@mixin portrait {
+    @media screen and (orientation: portrait) {
+        @content;
+    }
+}
+
+@mixin landscape {
+    @media screen and (orientation: landscape) {
+        @content;
+    }
+}
+
+@mixin pulse($color: white, $animation: circle-pulse, $radius: 50%) {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    transform: translate3d(-50%, -50%, 0);
+    transition: opacity 0.3s;
+    pointer-events: none;
+
+    &:before,
+    &:after {
+        content: '';
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 100%;
+        height: 100%;
+        border-radius: $radius;
+        border: 1px solid rgba($color, 0.5);
+        opacity: 0;
+        transform: translate3d(-50%, -50%, 0);
+    }
+
+    &:before {
+        animation: $animation 1.8s linear infinite;
+    }
+
+    &:after {
+        animation: $animation 1.8s linear 0.4s infinite;
+    }
+
+    &:global {
+        &:before {
+            animation: $animation 1.8s linear infinite;
+        }
+
+        &:after {
+            animation: $animation 1.8s linear 0.4s infinite;
+        }
+    }
+}
+
+@mixin actions-off {
+    user-select: none;
+    pointer-events: none;
+}
+
+@function pdf-diff($px) {
+    @return #{'calc(' + $px + ' * ' + var(--pdf-diff) + ')'};
+}
+
+@mixin text($name) {
+    // Headings
+    @if $name == h6 {
+        font-size: 1.6rem;
+        line-height: normal;
+        font-weight: 500;
+    }
+
+    @if $name == h5 {
+        font-size: 2rem;
+        line-height: normal;
+        font-weight: 500;
+    }
+
+    @if $name == h4 {
+        font-size: 2.4rem;
+        line-height: normal;
+        font-weight: 500;
+    }
+
+    @if $name == h3 {
+        font-size: 2.8rem;
+        line-height: normal;
+        font-weight: 500;
+    }
+
+    @if $name == h2 {
+        font-size: 3.2rem;
+        line-height: normal;
+        font-weight: 500;
+    }
+
+    @if $name == h1 {
+        font-size: 4.4rem;
+        line-height: normal;
+        font-weight: 500;
+    }
+
+    @if $name == title {
+        font-size: 8rem;
+        line-height: 100%;
+        letter-spacing: 0;
+        font-weight: 500;
+    }
+
+    // Paragraphs
+    @if $name == p4 {
+        font-size: 1.2rem;
+        line-height: 1.5;
+    }
+
+    @if $name == p3 {
+        font-size: 1.4rem;
+        line-height: 1.5;
+    }
+
+    @if $name == p2 {
+        font-size: 1.6rem;
+        line-height: 1.5;
+    }
+
+    @if $name == p1 {
+        font-size: 1.8rem;
+        line-height: 1.5;
+    }
+
+    @if $name == p1-m {
+        font-size: 1.8rem;
+        line-height: 1.5;
+        font-weight: 500;
+    }
+
+    // Text
+    @if $name == t1 {
+        font-size: 1.4rem;
+        font-style: normal;
+        line-height: 136%;
+    }
+
+    @if $name == t2 {
+        font-size: 1.2rem;
+        font-style: normal;
+        line-height: 136%;
+    }
+
+    // Labels
+    @if $name == l1-m {
+        font-size: 1.4rem;
+        font-weight: 500;
+        line-height: normal;
+    }
+
+    @if $name == l1 {
+        font-size: 1.4rem;
+        font-weight: 400;
+        line-height: normal;
+    }
+
+    @if $name == l2-m {
+        font-size: 1.2rem;
+        font-weight: 500;
+        line-height: normal;
+    }
+
+    @if $name == l2 {
+        font-size: 1.2rem;
+        font-weight: 400;
+        line-height: normal;
+    }
+
+    @if $name == l3-m {
+        font-size: 1rem;
+        font-weight: 500;
+        line-height: normal;
+    }
+
+    @if $name == l3 {
+        font-size: 1rem;
+        font-weight: 400;
+        line-height: normal;
+    }
+}
+
+/*Миксин для обрезки текста*/
+@mixin text-crop($line-height: 1.3, $top-adjustment: 0px, $bottom-adjustment: 0px) {
+    // Configured in Step 1
+    $top-crop: 5;
+    $bottom-crop: 6;
+    $crop-font-size: 40;
+    $crop-line-height: 1;
+
+    // Apply values to calculate em-based margins that work with any font size
+    $dynamic-top-crop: calc(
+        max(($top-crop + ($line-height - $crop-line-height) * ($crop-font-size / 2)), 0) /
+            $crop-font-size
+    );
+    $dynamic-bottom-crop: calc(
+        max(($bottom-crop + ($line-height - $crop-line-height) * ($crop-font-size / 2)), 0) /
+            $crop-font-size
+    );
+
+    // Mixin output
+    line-height: $line-height;
+    height: max-content;
+
+    &::before,
+    &::after {
+        content: '';
+        display: block;
+        height: 0;
+        width: 0;
+    }
+
+    &::before {
+        margin-bottom: calc(-#{$dynamic-top-crop}em + #{$top-adjustment});
+    }
+
+    &::after {
+        margin-top: calc(-#{$dynamic-bottom-crop}em + #{$bottom-adjustment});
+    }
+}
+
+/*stylelint-enable*/
+
+/*Миксин для скрытия скроллбара */
+@mixin hide-scroll() {
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    -webkit-overflow-scrolling: touch;
+
+    &::-webkit-scrollbar {
+        display: none;
+    }
+}
+
+/*Миксин для добавления тени на картинку для читаемости текста */
+@mixin add-overlay($color: #000, $opacity: 0.25) {
+    &:after {
+        content: '';
+        position: absolute;
+        background-color: rgba($color, $opacity);
+        inset: 0;
+        pointer-events: none;
+    }
+}
+
+/*stylelint-enable*/

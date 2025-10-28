@@ -1,0 +1,222 @@
+@use '../shared/mixins' as *;
+@use '../shared/variables' as *;
+
+.fade-enter-active,
+.fade-leave-active {
+    transition: opacity $default-transition;
+}
+
+.fade-enter-from,
+.fade-leave-to {
+    opacity: 0;
+}
+
+.fade-fast-enter-active,
+.fade-fast-leave-active {
+    transition: opacity $default-transition;
+}
+
+.fade-fast-enter-from,
+.fade-fast-leave-to {
+    opacity: 0;
+}
+
+.fade-abs-enter-active,
+.fade-abs-leave-active {
+    transition: opacity $default-transition;
+}
+
+.fade-abs-leave-active {
+    position: absolute;
+}
+
+.fade-abs-enter-from,
+.fade-abs-leave-to {
+    opacity: 0;
+}
+
+.list-enter-active,
+.list-leave-active {
+    transition: all 0.4s cubic-bezier(0, 0.555, 0.36, 1.005);
+}
+
+.list-enter-from,
+.list-leave-to {
+    opacity: 0;
+    transform: translateY(4rem);
+}
+
+.overlay-appear-enter-active {
+    transition: all 0.4s;
+}
+
+.overlay-appear-leave-active {
+    transition: all 0.2s;
+}
+
+.overlay-appear-enter-from,
+.overlay-appear-leave-to {
+    opacity: 0;
+}
+
+.change-images-enter-active {
+    transition: opacity 0.5s;
+}
+
+.change-images-leave-active {
+    transition: opacity 0.5s;
+    transition-delay: 0.5s;
+}
+
+.change-images-enter-from,
+.change-images-leave-to {
+    opacity: 0;
+}
+
+.tooltip-enter-active {
+    transition:
+        opacity 0.3s,
+        transform 0.3s;
+}
+
+.tooltip-leave-active {
+    transition:
+        opacity 0.15s,
+        transform 0.15s;
+}
+
+.tooltip-enter-from,
+.tooltip-leave-active {
+    opacity: 0;
+    transform: translateY(-1.6rem);
+}
+
+.dropdown-enter-from,
+.dropdown-leave-to {
+    opacity: 0;
+    transform: translate3d(0, 1rem, 0);
+}
+
+.dropdown-enter-active,
+.dropdown-leave-active {
+    transition:
+        opacity 0.3s,
+        transform 0.3s ease-in-out;
+}
+
+.dropdown-enter-from,
+.dropdown-leave-active {
+    opacity: 0;
+    transform: translateY(-1rem);
+}
+
+.fade-up-enter-active,
+.fade-up-leave-active {
+    transition: all 0.3s ease;
+}
+
+.fade-up-enter-from,
+.fade-up-leave-to {
+    opacity: 0;
+    transform: translateY(4rem);
+}
+
+.notification-enter-active,
+.notification-leave-active {
+    transition:
+        opacity 0.4s cubic-bezier(0, 0.555, 0.36, 1.005),
+        transform 0.4s cubic-bezier(0, 0.555, 0.36, 1.005);
+}
+
+.notification-enter-from,
+.notification-leave-to {
+    opacity: 0;
+    transform: translateX(10rem);
+}
+
+.fade-right-enter-active,
+.fade-right-leave-active {
+    transition: all 0.4s ease-in-out;
+}
+
+.fade-right-enter-from,
+.fade-right-leave-to {
+    opacity: 30;
+    transform: translateX(100%);
+}
+
+.fade-down-enter-active,
+.fade-down-leave-active {
+    transition: all 0.4s ease-in-out;
+}
+
+.fade-down-enter-from,
+.fade-down-leave-to {
+    opacity: 30;
+    transform: translateY(100%);
+}
+
+.icons-menu-enter-active,
+.icons-menu-leave-active {
+    transition:
+        opacity 0.4s ease-in-out,
+        transform 0.4s ease-in-out;
+}
+
+.icons-menu-enter-from {
+    opacity: 0;
+    transform: translateY(80%) scale(0.4);
+}
+
+.icons-menu-leave-to {
+    opacity: 0;
+    transform: translateY(-60%) scale(0.4);
+}
+
+.menu-text-enter-active {
+    transition:
+        opacity 0.4s cubic-bezier(0.33, 1, 0.68, 1),
+        transform 0.4s cubic-bezier(0.33, 1, 0.68, 1);
+}
+
+.menu-text-enter-from,
+.menu-text-leave-to {
+    opacity: 0;
+    transform: translateY(2rem);
+}
+
+.menu-project-image-enter-active {
+    transition: opacity 0.4s cubic-bezier(0.42, 0.65, 0.27, 0.99) 0s;
+}
+
+.menu-project-image-leave-to {
+    transition: opacity 0.4s cubic-bezier(0.42, 0.65, 0.27, 0.99) 0s;
+}
+
+.menu-project-image-enter-from,
+.menu-project-image-leave-to {
+    opacity: 0;
+}
+
+.fade-fast-mobile-enter-active,
+.fade-fast-mobile-leave-active {
+    transition: opacity 0.1s ease-in;
+}
+
+.fade-fast-mobile-enter-from,
+.fade-fast-mobile-leave-to {
+    opacity: 0;
+}
+
+.common-overlay-enter-active {
+    transition: opacity ease-in-out 0.1s;
+}
+
+.common-overlay-leave-active {
+    transition: opacity ease-in-out 0.3s;
+}
+
+.common-overlay-enter-from,
+.common-overlay-leave-to {
+    opacity: 0;
+}
